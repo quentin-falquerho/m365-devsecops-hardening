@@ -1,0 +1,66 @@
+# 1. Enforce Phishing-Resistant MFA for 100% of Users (NIS2 Article 21 Compliance)
+resource "azuread_conditional_access_policy" "nis2_strict_mfa" {
+  display_name = "[NIS2-STRICT] Mandatory MFA for All Users and Risk Levels"
+  state        = "enabled"
+
+  conditions {
+    client_app_types = ["all"]
+
+    applications {
+      included_applications = ["All"]
+    }
+
+    users {
+      included_users = ["All"]
+      excluded_users = [] # Zero exclusions for absolute compliance
+    }
+
+    sign_in_risk_levels = ["high", "medium", "low"]
+  }
+
+  grant_controls {
+    operator          = "AND"
+    built_in_controls = ["mfa"]
+  }
+
+  session_controls {
+    sign_in_frequency = 1
+    sign_in_frequency_period = "hours"
+  }
+}
+
+# 2. Block All Legacy Authentication Protocols (NIS2 Attack Surface Reduction)
+resource "azuread_conditional_access_policy" "nis2_block_legacy" {
+  display_name = "[NIS2-STRICT] Block All Legacy Authentication Protocols"
+  state        = "enabled"
+
+  conditions {
+    client_app_types = [
+      "exchangeActiveSync",
+      "other"
+    ]
+
+    applications {
+      included_applications = ["All"]
+    }
+
+    users {
+      included_users = ["All"]
+    }
+  }
+
+  grant_controls {
+    operator          = "OR"
+    built_in_controls = ["block"]
+  }
+}
+
+# 3. Restrict Non-Admin User Consent for Third-Party Apps (NIS2 Supply Chain Security)
+resource "microsoftgraph_authorization_policy" "nis2_authorization_policy" {
+  default_user_role_permissions {
+    allowed_to_create_apps              = false
+    allowed_to_create_security_groups   = false
+    allowed_to_read_other_users         = true
+    permission_grant_policy_ids         = []
+  }
+}

@@ -1,0 +1,9 @@
+output "strict_mfa_policy_id" {
+  value       = azuread_conditional_access_policy.nis2_strict_mfa.id
+  description = "Resource ID for the mandatory strict MFA policy."
+}
+
+output "legacy_auth_policy_id" {
+  value       = azuread_conditional_access_policy.nis2_block_legacy.id
+  description = "Resource ID for the policy blocking legacy protocols."
+}
