@@ -1,3 +1,5 @@
+make it look like less like ai
+
 # M365 DevSecOps Hardening - NIS2 Compliance
 
 ![GitHub Status](https://img.shields.io/badge/status-active-success.svg)
@@ -7,7 +9,7 @@
 
 ## 📌 About the Project
 
-This repository contains DevSecOps scripts and automated tenant hardening configurations for **Microsoft 365** environments. 
+This repository contains DevSecOps scripts and automated tenant hardening configurations for **Microsoft 365** environments. 
 
 The primary goal is to align your cloud infrastructure's security posture with the enhanced cybersecurity standards of the EU **NIS2 Directive**, reinforcing network security, incident management, supply chain integrity, and overall operational resilience within critical cloud-based infrastructures.
 
@@ -38,6 +40,6 @@ Before applying these configurations, ensure you have the following in place:
 ## ⚙️ Usage / Deployment
 
 1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/quentin-falquerho/m365-devsecops-hardening-NIS2.git](https://github.com/quentin-falquerho/m365-devsecops-hardening-NIS2.git)
-   cd m365-devsecops-hardening-NIS2
+   ```bash
+   git clone [https://github.com/quentin-falquerho/m365-devsecops-hardening-NIS2.git](https://github.com/quentin-falquerho/m365-devsecops-hardening-NIS2.git)
+   cd m365-devsecops-hardening-NIS2
